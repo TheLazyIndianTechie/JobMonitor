@@ -16,8 +16,12 @@ tested and what comes next (roadmap steps 10.1 to 12). Read it before proposing 
 
 The GitHub repo is connected to the Vercel project `igg-job-monitor` on the Pro team
 `lateprofessors-projects`. Pushes to `master` deploy to production; other branches get
-preview deployments. On Pro, a commit deploys only if its author is a member of the
-Vercel team, and each developer seat is billed.
+preview deployments. Deploy commands are in `README.md`.
+
+Per Vercel's Git docs, the rule that a private-repo commit author must be a Vercel
+team member applies to GitHub organisations, not to collaborators on a personal
+GitHub account, which this repo is. If the repo moves to a GitHub organisation, each
+committer will need a paid seat on the Vercel team for their commits to deploy.
 
 Vercel serves only `public/`, a hand-written static landing page (`public/index.html`,
 no build step). The page is public, so it carries the README-level summary only and

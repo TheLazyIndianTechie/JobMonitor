@@ -36,5 +36,35 @@ The project is in development and validation. It is not live.
   full architecture, test results, safety controls, next steps and the open questions
   for Community administrators.
 
+## Deploying
+
+The landing page in `public/index.html` is hosted on Vercel at
+https://igg-job-monitor-tau.vercel.app. Only the `public/` folder is served; the
+Markdown docs are not published.
+
+**Automatic (the normal way).** No commands needed beyond Git:
+
+```bash
+git checkout -b my-change
+git commit -am "Describe the change"
+git push -u origin my-change     # Vercel builds a preview URL for the branch
+```
+
+Open a pull request, then merge it into `master`. Every merge to `master` deploys to
+production.
+
+**Manual.** For members of the Vercel team `lateprofessors-projects`:
+
+```bash
+npm i -g vercel                  # once
+vercel login                     # once
+vercel link --scope lateprofessors-projects --project igg-job-monitor   # once per clone
+vercel                           # preview deployment
+vercel --prod                    # production deployment
+```
+
+To preview the page locally, open `public/index.html` in a browser. There is no build
+step.
+
 This repository currently holds documentation only. The Apps Script code and the
 Google Sheet live outside it.
