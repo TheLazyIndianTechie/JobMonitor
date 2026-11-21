@@ -4,10 +4,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repository is
 
-As of 2026-11-21 this repo holds documentation only for IGG Job Monitor (MWAP): a stub
+As of 2026-11-21 this repo holds documentation only for IGG Job Monitor (MWAP): a summary
 `README.md` and `IGG_MWAP_Project_Status_and_Roadmap_20_Nov_2026.md`. The Google Apps
 Script code and the Google Sheet it drives live outside this repo, so there are no
 build, lint or test commands. Update this file when code lands here.
+
+The status and roadmap document is the source of truth for what is built, what is
+tested and what comes next (roadmap steps 10.1 to 12). Read it before proposing work.
 
 ## Deployment
 
@@ -17,9 +20,6 @@ serves only `public/`, which holds a placeholder page; the Markdown docs at the 
 root are deliberately not served, so don't move them into `public/` without the user's
 approval. On Hobby, a private repo only auto-deploys commits authored by the repo
 owner, so teammates' work deploys when the owner merges it or runs `vercel --prod`.
-
-The status and roadmap document is the source of truth for what is built, what is
-tested and what comes next (roadmap steps 10.1 to 12). Read it before proposing work.
 
 ## What the system does
 
