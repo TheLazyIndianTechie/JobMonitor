@@ -4,117 +4,245 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>IGG Job Monitor</title>
+<title>IGG Job Monitor documentation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500&display=swap">
 <style>
   :root {
-    --bg: #f7f6f2;
-    --surface: #ffffff;
-    --text: #1c1b18;
-    --muted: #625f57;
-    --line: #dedbd2;
-    --accent: #0b6e4f;
-    --accent-text: #ffffff;
-    --badge-bg: #fdf1d3;
-    --badge-text: #6b4a00;
+    --bg: #F6F7F9;
+    --surface: #FFFFFF;
+    --text: #14181F;
+    --muted: #55606E;
+    --line: #DDE1E7;
+    --line-strong: #B9C0CA;
+    --accent: #0B6E4F;
+    --accent-hover: #084F39;
+    --accent-soft: #E4F2EC;
+    --on-accent: #FFFFFF;
+    --code-bg: #E9ECF1;
+    --pre-bg: #14181F;
+    --pre-text: #E6EAF0;
+    --warn-bg: #FDF1D3;
+    --warn-text: #4A3300;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #151614;
-      --surface: #1e201d;
-      --text: #ecebe6;
-      --muted: #a5a39b;
-      --line: #32352f;
-      --accent: #5fd0a5;
-      --accent-text: #0d1f18;
-      --badge-bg: #3a2f10;
-      --badge-text: #f3d68a;
+      --bg: #111418;
+      --surface: #1A1E24;
+      --text: #E8EBEF;
+      --muted: #A3ACB8;
+      --line: #2C323B;
+      --line-strong: #46505C;
+      --accent: #4CC49A;
+      --accent-hover: #74D6B3;
+      --accent-soft: #17322A;
+      --on-accent: #0A1F18;
+      --code-bg: #262C35;
+      --pre-bg: #0B0D10;
+      --pre-text: #E6EAF0;
+      --warn-bg: #3A2F10;
+      --warn-text: #F3D68A;
     }
   }
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.6 Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
   }
-  main { max-width: 760px; margin: 0 auto; padding: 56px 16px 72px; }
-  h1 { font-size: clamp(2rem, 6vw, 2.75rem); line-height: 1.15; margin: 12px 0 12px; letter-spacing: -0.02em; }
-  h2 { font-size: 1.15rem; margin: 48px 0 16px; }
-  p { margin: 0 0 12px; }
-  .lead { font-size: 1.15rem; color: var(--muted); max-width: 60ch; }
-  .badge {
-    display: inline-block; padding: 3px 10px; border-radius: 999px;
-    background: var(--badge-bg); color: var(--badge-text);
-    font-size: 0.8rem; font-weight: 600;
-  }
-  ol.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; counter-reset: step; }
-  ol.steps li {
-    counter-increment: step;
-    display: grid; grid-template-columns: 32px 1fr; gap: 12px; align-items: start;
-    background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px;
-  }
-  ol.steps li::before {
-    content: counter(step);
-    width: 28px; height: 28px; border-radius: 50%;
-    display: grid; place-items: center;
-    background: var(--accent); color: var(--accent-text);
-    font-size: 0.85rem; font-weight: 700;
-  }
-  ol.steps strong { display: block; }
-  ol.steps span { color: var(--muted); font-size: 0.95rem; }
-  .grid { display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
-  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
-  .card strong { display: block; margin-bottom: 4px; }
-  .card span { color: var(--muted); font-size: 0.95rem; }
-  ul.plain { margin: 0; padding-left: 20px; }
-  ul.plain li { margin-bottom: 6px; }
   a { color: var(--accent); }
-  .button {
-    display: inline-block; margin-top: 8px; padding: 10px 16px; border-radius: 8px;
-    background: var(--accent); color: var(--accent-text);
-    font-weight: 600; text-decoration: none;
+  a:hover { color: var(--accent-hover); }
+  h1, h2, .brand, .stat strong { font-family: "Space Grotesk", Inter, sans-serif; }
+  h1 { margin: 0; font-weight: 700; font-size: clamp(2.1rem, 6vw, 2.75rem); line-height: 1.1; letter-spacing: -0.02em; }
+  h2 { margin: 0; font-weight: 600; font-size: 1.75rem; line-height: 1.2; }
+  p { margin: 0; }
+  code {
+    font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.875rem;
+    background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
   }
-  .note { color: var(--muted); font-size: 0.9rem; margin-top: 10px; }
-  footer { margin-top: 56px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.9rem; }
+  .wrap { max-width: 1160px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+  @media (max-width: 480px) { .wrap { padding-left: 16px; padding-right: 16px; } }
+
+  header { background: var(--surface); border-bottom: 1px solid var(--line); }
+  header .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px; padding-top: 10px; padding-bottom: 10px; }
+  .brand { display: flex; align-items: center; gap: 10px; min-height: 44px; color: var(--text); text-decoration: none; font-weight: 700; font-size: 1.125rem; }
+  .brand:hover { color: var(--text); }
+  .brand i { width: 28px; height: 28px; border-radius: 7px; background: var(--accent); }
+  .sub { font-size: 0.875rem; color: var(--muted); }
+  .badge { margin-left: auto; font-size: 0.8125rem; font-weight: 600; color: var(--warn-text); background: var(--warn-bg); padding: 4px 12px; border-radius: 999px; }
+  .toplink { font-size: 0.875rem; font-weight: 500; min-height: 44px; display: inline-flex; align-items: center; }
+
+  .layout { display: flex; flex-wrap: wrap; gap: 32px 56px; padding-top: 40px; padding-bottom: 72px; }
+  nav { flex: 1 1 200px; max-width: 240px; display: flex; flex-direction: column; gap: 2px; font-size: 0.9375rem; align-self: flex-start; }
+  nav span { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  nav a { padding: 10px 12px; border-radius: 8px; text-decoration: none; color: var(--text); }
+  nav a:hover { background: var(--accent-soft); color: var(--text); }
+  @media (min-width: 900px) { nav { position: sticky; top: 24px; } }
+  @media (max-width: 899px) {
+    nav { max-width: none; flex-basis: 100%; flex-direction: row; flex-wrap: wrap; }
+    nav span { flex-basis: 100%; }
+  }
+  main { flex: 999 1 560px; min-width: 0; max-width: 760px; display: flex; flex-direction: column; gap: 56px; }
+  section { display: flex; flex-direction: column; gap: 16px; scroll-margin-top: 24px; }
+  .lead { font-size: 1.25rem; line-height: 1.5; color: var(--muted); }
+
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+  .stat, .steps li, .table { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+  .stat { padding: 16px; }
+  .stat span { display: block; font-size: 0.8125rem; color: var(--muted); }
+  .stat strong { font-weight: 600; font-size: 1.125rem; }
+
+  .steps { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; counter-reset: step; }
+  .steps li { counter-increment: step; display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; }
+  .steps li::before {
+    content: counter(step); flex: none; width: 28px; height: 28px; border-radius: 50%;
+    background: var(--accent); color: var(--on-accent); font-weight: 600; font-size: 0.875rem;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .steps strong { display: block; }
+  .steps span { color: var(--muted); }
+
+  .table { overflow-x: auto; }
+  table { width: 100%; min-width: 520px; border-collapse: collapse; font-size: 0.9375rem; text-align: left; }
+  th, td { padding: 12px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 0.8125rem; color: var(--muted); font-weight: 600; }
+  tbody tr:last-child td { border-bottom: 0; }
+  td.name { font-weight: 600; }
+  td.mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.875rem; }
+
+  ul.list, ol.list { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 8px; }
+  .callout { background: var(--warn-bg); color: var(--warn-text); border-radius: 10px; padding: 14px 16px; }
+  pre {
+    margin: 0; background: var(--pre-bg); color: var(--pre-text); border-radius: 10px; padding: 16px; overflow-x: auto;
+    font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.875rem; line-height: 1.7;
+  }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  .button { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 8px; font-weight: 600; text-decoration: none; }
+  .button.primary { background: var(--accent); color: var(--on-accent); }
+  .button.primary:hover { background: var(--accent-hover); color: var(--on-accent); }
+  .button.secondary { background: var(--surface); color: var(--text); border: 1px solid var(--line-strong); }
+  footer { border-top: 1px solid var(--line); padding-top: 16px; font-size: 0.875rem; color: var(--muted); }
 </style>
 </head>
 <body>
-<main>
-  <span class="badge">In development · not live</span>
-  <h1>IGG Job Monitor</h1>
-  <p class="lead">Finds videogame-industry job vacancies in India and shares the good ones with the right WhatsApp Community groups.</p>
-
-  <h2>What it does</h2>
-  <ol class="steps">
-    <li><div><strong>Discovers</strong><span>Listings from studios, publishers and industry service providers.</span></div></li>
-    <li><div><strong>Filters</strong><span>By employer, role and India eligibility.</span></div></li>
-    <li><div><strong>Verifies</strong><span>That the vacancy is genuine and still open.</span></div></li>
-    <li><div><strong>Removes duplicates</strong><span>And keeps a record of where each listing came from.</span></div></li>
-    <li><div><strong>Routes</strong><span>Each job to the matching Community group by discipline.</span></div></li>
-    <li><div><strong>Waits for approval</strong><span>A human approves every job before anything is shared.</span></div></li>
-  </ol>
-
-  <h2>How it is built</h2>
-  <div class="grid">
-    <div class="card"><strong>Google Sheets</strong><span>The database: jobs, sources, employers, group mappings, the approval queue and logs.</span></div>
-    <div class="card"><strong>Google Apps Script</strong><span>The automation engine that runs each step.</span></div>
-    <div class="card"><strong>WhatsApp posting</strong><span>Planned, not built. A self-hosted gateway is being tested.</span></div>
+<header>
+  <div class="wrap">
+    <a class="brand" href="#overview"><i aria-hidden="true"></i>IGG Job Monitor</a>
+    <span class="sub">Documentation</span>
+    <span class="badge">In development · not live</span>
+    <a class="toplink" href="https://github.com/TheLazyIndianTechie/JobMonitor">Repository</a>
   </div>
+</header>
 
-  <h2>Status</h2>
-  <ul class="plain">
-    <li>The approval workflow has passed controlled end-to-end tests.</li>
-    <li>Discovery, verification, duplicate checks and the database writer are developed and tested, but no genuine vacancies are being collected or inserted.</li>
-    <li>Nothing is posted to WhatsApp yet.</li>
-  </ul>
+<div class="wrap layout">
+  <nav aria-label="Sections">
+    <span>On this page</span>
+    <a href="#overview">Overview</a>
+    <a href="#how">How it works</a>
+    <a href="#architecture">Architecture</a>
+    <a href="#approval">Approval workflow</a>
+    <a href="#safety">Safety controls</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="#contribute">Contributing</a>
+  </nav>
 
-  <h2>Documentation</h2>
-  <p>The full architecture, test results, safety controls and roadmap are in the project repository.</p>
-  <a class="button" href="https://github.com/TheLazyIndianTechie/JobMonitor/blob/master/IGG_MWAP_Project_Status_and_Roadmap_20_Nov_2026.md">Project status and roadmap</a>
-  <a class="button" href="https://github.com/TheLazyIndianTechie/JobMonitor">Repository</a>
-  <p class="note">The repository is private, so these links open only for team members signed in to GitHub.</p>
+  <main>
+    <section id="overview">
+      <h1>IGG Job Monitor</h1>
+      <p class="lead">Finds videogame-industry job vacancies in India and shares the good ones with the right WhatsApp Community groups.</p>
+      <p>The project covers studios and publishers, external QA and testing providers, art and animation outsourcing, localisation providers, gaming technology vendors and other industry service providers. Every job is checked, de-duplicated and approved by a person before it can be shared.</p>
+      <div class="stats">
+        <div class="stat"><span>Approval workflow</span><strong>Validated</strong></div>
+        <div class="stat"><span>Job collection</span><strong>Built, not active</strong></div>
+        <div class="stat"><span>WhatsApp posting</span><strong>Not built</strong></div>
+      </div>
+    </section>
 
-  <footer>IGG Job Monitor (MWAP) · Status as of 20 November 2026</footer>
-</main>
+    <section id="how">
+      <h2>How it works</h2>
+      <p>Each vacancy moves through six steps, in order.</p>
+      <ol class="steps">
+        <li><div><strong>Discover</strong><span>Pull listings from job sources and record where each one came from.</span></div></li>
+        <li><div><strong>Filter</strong><span>Keep jobs from approved employers, in relevant roles, that are open to people in India.</span></div></li>
+        <li><div><strong>Verify</strong><span>Confirm the vacancy is genuine and still open. A page that loads is not enough; the check needs evidence about that specific vacancy.</span></div></li>
+        <li><div><strong>De-duplicate</strong><span>Match on employer plus requisition ID or application URL, and flag likely duplicates by title and location.</span></div></li>
+        <li><div><strong>Route</strong><span>Send each job to one Community group by its discipline. Jobs with a missing or conflicting mapping are held.</span></div></li>
+        <li><div><strong>Approve</strong><span>A person approves, rejects or holds every job before it can be distributed.</span></div></li>
+      </ol>
+    </section>
+
+    <section id="architecture">
+      <h2>Architecture</h2>
+      <p>There is no server. A spreadsheet holds the data and a script project runs the automation.</p>
+      <div class="table">
+        <table>
+          <thead><tr><th>Component</th><th>Role</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="name">Google Sheets</td><td>The database: jobs, sources, employers, group mappings, approval queue, distribution log, configuration and audit logs.</td><td>In place</td></tr>
+            <tr><td class="name">Google Apps Script</td><td>The automation engine. A standalone project connected to the spreadsheet by ID.</td><td>Developed and tested</td></tr>
+            <tr><td class="name">Job source</td><td>A job-listings endpoint read by the discovery step.</td><td>Disabled pending a terms review</td></tr>
+            <tr><td class="name">WhatsApp posting</td><td>Delivers approved jobs to the mapped Community group.</td><td>Not built</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="approval">
+      <h2>Approval workflow</h2>
+      <p>A job can be <code>PENDING</code>, <code>APPROVED</code>, <code>REJECTED</code> or <code>HOLD</code>. Approval and publishing are separate: approving a job never sends a message.</p>
+      <ul class="list">
+        <li>A first decision is applied straight away and written to the audit log.</li>
+        <li>An unchanged decision does nothing.</li>
+        <li>A changed decision is blocked until <code>Reprocess_Confirmed</code> is set to <code>TRUE</code>.</li>
+        <li>A confirmed change records the old and new decision, then resets the confirmation flag.</li>
+      </ul>
+    </section>
+
+    <section id="safety">
+      <h2>Safety controls</h2>
+      <div class="callout"><strong>These settings stay as they are during development.</strong> Changing any of them needs explicit approval from the project owner.</div>
+      <div class="table">
+        <table>
+          <thead><tr><th>Control</th><th>Setting</th><th>Effect</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">EMERGENCY_PAUSE</td><td class="mono">TRUE</td><td>Blocks the production writer from committing.</td></tr>
+            <tr><td class="mono">MONITORING_ENABLED</td><td class="mono">FALSE</td><td>No scheduled monitoring runs.</td></tr>
+            <tr><td class="mono">OPERATING_MODE</td><td class="mono">APPROVAL_REQUIRED</td><td>Nothing is distributed without human approval.</td></tr>
+            <tr><td class="mono">Job source</td><td class="mono">Disabled</td><td>Manual development use only.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="roadmap">
+      <h2>Roadmap</h2>
+      <p>The next work is the distribution side. Each stage starts only after the one before it passes.</p>
+      <ol class="list">
+        <li><strong>WhatsApp feasibility.</strong> Test a gateway locally and read-only, then check Community subgroups can be addressed.</li>
+        <li><strong>Controlled message test.</strong> One labelled message to a designated test group, after explicit authorisation.</li>
+        <li><strong>Distribution eligibility.</strong> Allow only active, verified and approved jobs with exactly one enabled group mapping.</li>
+        <li><strong>Message formatter.</strong> Consistent posts with title, employer, location, work arrangement, experience and application link.</li>
+        <li><strong>Posting and tracking.</strong> Log every attempt and outcome, and prevent repeat sends.</li>
+        <li><strong>Monitoring and reporting.</strong> Show posted jobs, failed sends, pending approvals and routing conflicts.</li>
+        <li><strong>Scheduling and end-to-end validation.</strong> Production activation needs separate approval.</li>
+      </ol>
+    </section>
+
+    <section id="contribute">
+      <h2>Contributing</h2>
+      <p>Push a branch and open a pull request. Every branch gets a preview link, and merging into <code>master</code> publishes this site.</p>
+<pre>git checkout -b my-change
+git commit -am "Describe the change"
+git push -u origin my-change</pre>
+      <div class="actions">
+        <a class="button primary" href="https://github.com/TheLazyIndianTechie/JobMonitor/blob/master/IGG_MWAP_Project_Status_and_Roadmap_20_Nov_2026.md">Full status and roadmap</a>
+        <a class="button secondary" href="https://github.com/TheLazyIndianTechie/JobMonitor">Repository</a>
+      </div>
+    </section>
+
+    <footer>IGG Job Monitor (MWAP) · Status as of 20 November 2026</footer>
+  </main>
+</div>
 </body>
 </html>

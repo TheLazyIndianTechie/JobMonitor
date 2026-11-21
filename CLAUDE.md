@@ -18,16 +18,15 @@ The GitHub repo is connected to the Vercel project `igg-job-monitor` on the Pro 
 `lateprofessors-projects`. Pushes to `master` deploy to production; other branches get
 preview deployments. Deploy commands are in `README.md`.
 
-Per Vercel's Git docs, the rule that a private-repo commit author must be a Vercel
-team member applies to GitHub organisations, not to collaborators on a personal
-GitHub account, which this repo is. If the repo moves to a GitHub organisation, each
-committer will need a paid seat on the Vercel team for their commits to deploy.
+The GitHub repo is public (changed by the owner on 2026-11-21), and Vercel
+collaboration is free for public repos, so collaborators' merges deploy without paid
+seats on the Vercel team.
 
-Vercel serves only `public/`, a hand-written static landing page (`public/index.html`,
-no build step). The page is public, so it carries the README-level summary only and
-links to the full docs on GitHub. The Markdown docs at the repo root are deliberately
-not served; don't move them into `public/` without the user's approval. Keep the
-landing page in step with `README.md` when the summary changes.
+Vercel serves only `public/`: a hand-written static documentation page
+(`public/index.html`, no build step) covering the overview, pipeline, architecture,
+approval workflow, safety controls and roadmap. It links to the full status doc on
+GitHub. Keep it in step with `README.md` and the status doc when they change. Its
+design source is the Design canvas at https://claude.ai/artifact/RDczHsMgfgA3UPRnT48pFU.
 
 ## What the system does
 
