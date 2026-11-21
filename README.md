@@ -3,6 +3,9 @@
 IGG Job Monitor (MWAP) finds videogame-industry job vacancies in India and shares the
 good ones with the right WhatsApp Community groups.
 
+**Docs:** [project status and roadmap](IGG_MWAP_Project_Status_and_Roadmap_20_Nov_2026.md) ·
+[documentation site](https://igg-job-monitor-tau.vercel.app)
+
 For each vacancy it:
 
 1. **Discovers** listings from studios, publishers and industry service providers.
@@ -68,3 +71,7 @@ step.
 
 This repository currently holds documentation only. The Apps Script code and the
 Google Sheet live outside it.
+
+## License
+
+[MIT](LICENSE)
