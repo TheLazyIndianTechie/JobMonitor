@@ -5,8 +5,116 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>IGG Job Monitor</title>
+<style>
+  :root {
+    --bg: #f7f6f2;
+    --surface: #ffffff;
+    --text: #1c1b18;
+    --muted: #625f57;
+    --line: #dedbd2;
+    --accent: #0b6e4f;
+    --accent-text: #ffffff;
+    --badge-bg: #fdf1d3;
+    --badge-text: #6b4a00;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #151614;
+      --surface: #1e201d;
+      --text: #ecebe6;
+      --muted: #a5a39b;
+      --line: #32352f;
+      --accent: #5fd0a5;
+      --accent-text: #0d1f18;
+      --badge-bg: #3a2f10;
+      --badge-text: #f3d68a;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  main { max-width: 760px; margin: 0 auto; padding: 56px 16px 72px; }
+  h1 { font-size: clamp(2rem, 6vw, 2.75rem); line-height: 1.15; margin: 12px 0 12px; letter-spacing: -0.02em; }
+  h2 { font-size: 1.15rem; margin: 48px 0 16px; }
+  p { margin: 0 0 12px; }
+  .lead { font-size: 1.15rem; color: var(--muted); max-width: 60ch; }
+  .badge {
+    display: inline-block; padding: 3px 10px; border-radius: 999px;
+    background: var(--badge-bg); color: var(--badge-text);
+    font-size: 0.8rem; font-weight: 600;
+  }
+  ol.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; counter-reset: step; }
+  ol.steps li {
+    counter-increment: step;
+    display: grid; grid-template-columns: 32px 1fr; gap: 12px; align-items: start;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px;
+  }
+  ol.steps li::before {
+    content: counter(step);
+    width: 28px; height: 28px; border-radius: 50%;
+    display: grid; place-items: center;
+    background: var(--accent); color: var(--accent-text);
+    font-size: 0.85rem; font-weight: 700;
+  }
+  ol.steps strong { display: block; }
+  ol.steps span { color: var(--muted); font-size: 0.95rem; }
+  .grid { display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+  .card strong { display: block; margin-bottom: 4px; }
+  .card span { color: var(--muted); font-size: 0.95rem; }
+  ul.plain { margin: 0; padding-left: 20px; }
+  ul.plain li { margin-bottom: 6px; }
+  a { color: var(--accent); }
+  .button {
+    display: inline-block; margin-top: 8px; padding: 10px 16px; border-radius: 8px;
+    background: var(--accent); color: var(--accent-text);
+    font-weight: 600; text-decoration: none;
+  }
+  .note { color: var(--muted); font-size: 0.9rem; margin-top: 10px; }
+  footer { margin-top: 56px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.9rem; }
+</style>
 </head>
 <body>
-<p>IGG Job Monitor</p>
+<main>
+  <span class="badge">In development · not live</span>
+  <h1>IGG Job Monitor</h1>
+  <p class="lead">Finds videogame-industry job vacancies in India and shares the good ones with the right WhatsApp Community groups.</p>
+
+  <h2>What it does</h2>
+  <ol class="steps">
+    <li><div><strong>Discovers</strong><span>Listings from studios, publishers and industry service providers.</span></div></li>
+    <li><div><strong>Filters</strong><span>By employer, role and India eligibility.</span></div></li>
+    <li><div><strong>Verifies</strong><span>That the vacancy is genuine and still open.</span></div></li>
+    <li><div><strong>Removes duplicates</strong><span>And keeps a record of where each listing came from.</span></div></li>
+    <li><div><strong>Routes</strong><span>Each job to the matching Community group by discipline.</span></div></li>
+    <li><div><strong>Waits for approval</strong><span>A human approves every job before anything is shared.</span></div></li>
+  </ol>
+
+  <h2>How it is built</h2>
+  <div class="grid">
+    <div class="card"><strong>Google Sheets</strong><span>The database: jobs, sources, employers, group mappings, the approval queue and logs.</span></div>
+    <div class="card"><strong>Google Apps Script</strong><span>The automation engine that runs each step.</span></div>
+    <div class="card"><strong>WhatsApp posting</strong><span>Planned, not built. A self-hosted gateway is being tested.</span></div>
+  </div>
+
+  <h2>Status</h2>
+  <ul class="plain">
+    <li>The approval workflow has passed controlled end-to-end tests.</li>
+    <li>Discovery, verification, duplicate checks and the database writer are developed and tested, but no genuine vacancies are being collected or inserted.</li>
+    <li>Nothing is posted to WhatsApp yet.</li>
+  </ul>
+
+  <h2>Documentation</h2>
+  <p>The full architecture, test results, safety controls and roadmap are in the project repository.</p>
+  <a class="button" href="https://github.com/TheLazyIndianTechie/JobMonitor/blob/master/IGG_MWAP_Project_Status_and_Roadmap_20_Nov_2026.md">Project status and roadmap</a>
+  <a class="button" href="https://github.com/TheLazyIndianTechie/JobMonitor">Repository</a>
+  <p class="note">The repository is private, so these links open only for team members signed in to GitHub.</p>
+
+  <footer>IGG Job Monitor (MWAP) · Status as of 20 November 2026</footer>
+</main>
 </body>
 </html>

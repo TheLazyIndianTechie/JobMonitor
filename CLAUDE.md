@@ -14,12 +14,16 @@ tested and what comes next (roadmap steps 10.1 to 12). Read it before proposing 
 
 ## Deployment
 
-The GitHub repo is connected to the Vercel project `igg-job-monitor` on the free Hobby
-team `thelazyindiantechies-projects`. Pushes to `master` deploy to production. Vercel
-serves only `public/`, which holds a placeholder page; the Markdown docs at the repo
-root are deliberately not served, so don't move them into `public/` without the user's
-approval. On Hobby, a private repo only auto-deploys commits authored by the repo
-owner, so teammates' work deploys when the owner merges it or runs `vercel --prod`.
+The GitHub repo is connected to the Vercel project `igg-job-monitor` on the Pro team
+`lateprofessors-projects`. Pushes to `master` deploy to production; other branches get
+preview deployments. On Pro, a commit deploys only if its author is a member of the
+Vercel team, and each developer seat is billed.
+
+Vercel serves only `public/`, a hand-written static landing page (`public/index.html`,
+no build step). The page is public, so it carries the README-level summary only and
+links to the full docs on GitHub. The Markdown docs at the repo root are deliberately
+not served; don't move them into `public/` without the user's approval. Keep the
+landing page in step with `README.md` when the summary changes.
 
 ## What the system does
 
